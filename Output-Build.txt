@@ -1,0 +1,5 @@
+﻿1>------ Build started: Project: MobileAppAPI, Configuration: Debug Any CPU ------
+1>F:\SSSLAPI\MobileAppAPI\Models\commonEncryption.cs(92,30,92,32): warning CS0168: The variable 'ex' is declared but never used
+1>F:\SSSLAPI\MobileAppAPI\Authorization\ApplicationAuthenticationHandler.cs(29,30,29,32): warning CS0168: The variable 'er' is declared but never used
+1>  MobileAppAPI -> F:\SSSLAPI\MobileAppAPI\bin\MobileAppAPI.dll
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
