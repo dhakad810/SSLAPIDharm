@@ -19,7 +19,7 @@ namespace MobileAppAPI.Controllers
     {
         ProductDetails produtDetail = new ProductDetails();
         Status status = new Models.Status();
-
+        //asdsas
         public IHttpActionResult GetProductList()
         {
           try
