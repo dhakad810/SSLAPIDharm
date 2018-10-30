@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="SSSLAPI" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Dharmendra\\Desktop\\SSSLAPI\\MobileAppAPI\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Dharmendra\\Desktop\\SSSLAPI\\MobileAppAPI\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="conStr-Web.config Connection String" description="conStr Connection String used in web.config by the application to access the database." value="Server= localhost;Initial Catalog= MobileAPIData; uid=sa; Password=1234; " tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Dharmendra\\Desktop\\SSSLAPI\\MobileAppAPI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='conStr']/@connectionString" />
+  </parameter>
+</parameters>
