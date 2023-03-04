@@ -7,7 +7,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
-using MobileAppAPI.Authorization;
+//using MobileAppAPI.Authorization;
 
 namespace MobileAppAPI
 {
@@ -19,8 +19,8 @@ namespace MobileAppAPI
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            GlobalConfiguration.Configuration.MessageHandlers.Add(new
-                    ApplicationAuthenticationHandler());
+            //GlobalConfiguration.Configuration.MessageHandlers.Add(new
+            //        ApplicationAuthenticationHandler());
         }
     }
 }

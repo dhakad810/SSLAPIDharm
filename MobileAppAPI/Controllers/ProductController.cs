@@ -14,12 +14,12 @@ using System.Net.Http;
 
 namespace MobileAppAPI.Controllers
 {
-    [System.Web.Http.Authorize]
+    //[System.Web.Http.Authorize]
     public class ProductController : ApiController
     {
         ProductDetails produtDetail = new ProductDetails();
         Status status = new Models.Status();
-
+        
         public IHttpActionResult GetProductList()
         {
           try

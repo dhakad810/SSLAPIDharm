@@ -83,9 +83,9 @@ namespace MobileAppAPI.Models.Admin
             return userRegistration;
         }
 
-        public UserRegistration GetUserDetail(string MobileNo)
+        public List<UserRegistration> GetUserDetail(string MobileNo)
          {
-            UserRegistration userregister = new Admin.UserRegistration();
+            List<UserRegistration> userregister = new List<UserRegistration>();
 
             DataTable dt = new DataTable();
             using (SqlConnection con = new SqlConnection(strConString))
@@ -98,16 +98,69 @@ namespace MobileAppAPI.Models.Admin
                 da.Fill(dt);
             }
 
-            if (dt.Rows.Count > 0)
+            userregister = (from DataRow row in dt.Rows
+
+                            select new UserRegistration
+                            {
+                                UserName = dt.Rows[0]["UserName"].ToString(),
+                                UserMobileNo = dt.Rows[0]["MobileNo"].ToString(),
+                                EmailId = dt.Rows[0]["EmailId"].ToString(),
+                                UserAddress = dt.Rows[0]["UserAddress"].ToString(),
+                               DeviceID = dt.Rows[0]["DeviceID"].ToString(),
+                               ModelNo = dt.Rows[0]["ModelNo"].ToString(),
+                                    RegistrationDate = Convert.ToDateTime(dt.Rows[0]["RegistrationDate"])
+
+        }).ToList();
+            //if (dt.Rows.Count > 0)
+            //{
+            //    userregister.UserName = dt.Rows[0]["UserName"].ToString();
+            //    userregister.UserMobileNo = dt.Rows[0]["MobileNo"].ToString();
+            //    userregister.EmailId = dt.Rows[0]["EmailId"].ToString();
+            //    userregister.UserAddress = dt.Rows[0]["UserAddress"].ToString();
+            //    userregister.DeviceID = dt.Rows[0]["DeviceID"].ToString();
+            //    userregister.ModelNo = dt.Rows[0]["ModelNo"].ToString();
+            //    userregister.RegistrationDate = Convert.ToDateTime(dt.Rows[0]["RegistrationDate"]);
+            //}
+            return userregister;
+
+        }
+
+        public List<UserRegistration> GetAllUserDetail()
+        {
+            List<UserRegistration> userregister = new List<UserRegistration>();
+
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(strConString))
             {
-                userregister.UserName = dt.Rows[0]["UserName"].ToString();
-                userregister.UserMobileNo = dt.Rows[0]["MobileNo"].ToString();
-                userregister.EmailId = dt.Rows[0]["EmailId"].ToString();
-                userregister.UserAddress = dt.Rows[0]["UserAddress"].ToString();
-                userregister.DeviceID = dt.Rows[0]["DeviceID"].ToString();
-                userregister.ModelNo = dt.Rows[0]["ModelNo"].ToString();
-                userregister.RegistrationDate = Convert.ToDateTime(dt.Rows[0]["RegistrationDate"]);
+                SqlCommand cmd = new SqlCommand("ProcGetMobileAppAPIDetail", con);
+                cmd.Parameters.Add(new SqlParameter("@Action", "GetAllUserDetail"));
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dt);
             }
+
+            userregister = (from DataRow row in dt.Rows
+                            select new UserRegistration
+                                {
+                                    UserId = row["UserId"].ToString(),
+                                    UserName = row["UserName"].ToString(),
+                                    UserMobileNo = row["MobileNo"].ToString(),
+                                    EmailId = row["EmailId"].ToString(),
+                                    UserAddress = row["UserAddress"].ToString(),
+                                    DeviceID = row["DeviceID"].ToString(),
+                                    ModelNo = row["ModelNo"].ToString(),
+                                    RegistrationDate = Convert.ToDateTime(row["RegistrationDate"])
+                                }).ToList();
+            //if (dt.Rows.Count > 0)
+            //{
+            //    userregister.UserName = dt.Rows[0]["UserName"].ToString();
+            //    userregister.UserMobileNo = dt.Rows[0]["MobileNo"].ToString();
+            //    userregister.EmailId = dt.Rows[0]["EmailId"].ToString();
+            //    userregister.UserAddress = dt.Rows[0]["UserAddress"].ToString();
+            //    userregister.DeviceID = dt.Rows[0]["DeviceID"].ToString();
+            //    userregister.ModelNo = dt.Rows[0]["ModelNo"].ToString();
+            //    userregister.RegistrationDate = Convert.ToDateTime(dt.Rows[0]["RegistrationDate"]);
+            //}
             return userregister;
 
         }

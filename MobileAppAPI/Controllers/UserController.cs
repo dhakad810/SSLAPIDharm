@@ -11,7 +11,6 @@ using System.Web.Helpers;
 
 namespace MobileAppAPI.Controllers
 {
-    [Authorize]
     public class UserController : ApiController
     {
         UserLogin userLogin = new UserLogin();
@@ -98,25 +97,27 @@ namespace MobileAppAPI.Controllers
         [ActionName("GetUserDetail")]
         public IHttpActionResult GetUserDetail(string mobileno)
         {
+            List<UserRegistration> userResult = new List<UserRegistration>();
+                userResult = userLogin.GetUserDetail(mobileno);
             try
             {
-                UserRegistration userResult = userLogin.GetUserDetail(mobileno);
+               
 
-                if (userResult.UserName != null)
-                {
-                    //return Ok(lstResult1);
+                //if (userResult.UserName != null)
+                //{
+                //    //return Ok(lstResult1);
 
-                    status.code = 200;
-                    status.message = "success";
-
-                    return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, new { status = status, result = userResult }));
-                }
-                else
-                {
-                    status.code = 201;
-                    status.message = "Details Not Available?";
-                    return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound, new { status = status, result = userResult }));
-                }
+                //    status.code = 200;
+                //    status.message = "success";
+                   
+                //    return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, new {userResult }));
+                //}
+                //else
+                //{
+                //    status.code = 201;
+                //    status.message = "Details Not Available?";
+                //    return ResponseMessage(Request.CreateResponse(HttpStatusCode.NotFound, new { status = status, result = userResult }));
+                //}
             }
             catch (Exception ex)
             {
@@ -124,7 +125,25 @@ namespace MobileAppAPI.Controllers
                 status.message = ex.Message.ToString();
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.InternalServerError, new { status = status }));
             }
+           return Ok(userResult);
+        }
 
+        [HttpGet]
+        [ActionName("GetAllUserDetail")]
+        public IHttpActionResult GetAllUserDetail()
+        {
+            List<UserRegistration> userResult = new List<UserRegistration>();
+            userResult = userLogin.GetAllUserDetail();
+            try
+            {
+            }
+            catch (Exception ex)
+            {
+                status.code = 500;
+                status.message = ex.Message.ToString();
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.InternalServerError, new { status = status }));
+            }
+            return Ok(userResult);
         }
     }
 }
