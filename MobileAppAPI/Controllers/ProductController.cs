@@ -11,7 +11,9 @@ using static MobileAppAPI.Models.Product.ProductDetails;
 using System.Web.Http;
 using System.Net;
 using System.Net.Http;
-
+/// <summary>
+/// //////////
+/// </summary>
 namespace MobileAppAPI.Controllers
 {
     //[System.Web.Http.Authorize]
